@@ -3,7 +3,6 @@ from random import random
 
 from django.conf import settings
 from django.db import models, IntegrityError
-from django.core.mail import send_mail
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.template.loader import render_to_string
 from django.utils.hashcompat import sha_constructor
@@ -13,6 +12,7 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 
 from emailconfirmation.signals import email_confirmed, email_confirmation_sent
+from djpostman.sender import render_to_send_multi_mail
 
 # this code based in-part on django-registration
 
@@ -116,11 +116,15 @@ class EmailConfirmationManager(models.Manager):
         }
         subject = render_to_string(
             "emailconfirmation/email_confirmation_subject.txt", context)
-        # remove superfluous line breaks
-        subject = "".join(subject.splitlines())
-        message = render_to_string(
-            "emailconfirmation/email_confirmation_message.txt", context)
-        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email_address.email])
+        
+        render_to_send_multi_mail(
+            # remove superfluous line breaks
+            "".join(subject.splitlines()), 
+            "emailconfirmation/email_confirmation_message.html",
+            context,
+            [email_address.email]
+        )
+        
         confirmation = self.create(
             email_address=email_address,
             sent=datetime.datetime.now(),

@@ -15,6 +15,12 @@ setup(
             "templates/emailconfirmation/*.txt"
         ],
     },
+    install_requires=[
+        'djpostman==0.4.2',
+    ],
+    dependency_links = [ 
+        'http://github.com/iterativ/djpostman/tarball/master#egg=djpostman-0.4.2',
+    ],
     zip_safe=False,
     classifiers=[
         "Development Status :: 3 - Alpha",

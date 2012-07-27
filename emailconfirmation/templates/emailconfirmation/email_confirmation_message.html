@@ -1,0 +1,15 @@
+{% extends "mail/base.html" %}
+{% load shop_tags %}
+{% load i18n %}
+{% block subheader %}{% trans "Confirm email address" %}{% endblock %}
+
+{% block content %}
+	{% blocktrans with current_site.name as site_name %}
+	<p>
+		User '{% if user.get_full_name %}{{user.get_full_name}}{% else %}{{user}}{% endif %}' at {{ site_name }} has given this as an email address.
+	</p>
+	<p>
+		To confirm this is correct, go to <a href="{{ activate_url }}">{{ activate_url }}</a>
+	</p>
+	{% endblocktrans %}
+{% endblock %}

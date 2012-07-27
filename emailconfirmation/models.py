@@ -108,8 +108,10 @@ class EmailConfirmationManager(models.Manager):
             unicode(current_site.domain),
             path
         )
+        
+        user = email_address.user
         context = {
-            "user": email_address.user,
+            "user_name": user.get_full_name() or  user.username,
             "activate_url": activate_url,
             "current_site": current_site,
             "confirmation_key": confirmation_key,

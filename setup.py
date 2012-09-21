@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-email-confirmation",
-    version="0.2",
+    version="0.2.1",
     description="Simple email confirmation for the Django web framework.",
     long_description=open("docs/index.txt").read(),
     author="James Tauber",
@@ -16,10 +16,10 @@ setup(
         ],
     },
     install_requires=[
-        'djpostman==0.4.4',
+        'djpostman==0.4.5',
     ],
     dependency_links = [ 
-        'http://github.com/iterativ/djpostman/tarball/master#egg=djpostman-0.4.4',
+        'http://github.com/iterativ/djpostman/tarball/master#egg=djpostman-0.4.5',
     ],
     zip_safe=False,
     classifiers=[

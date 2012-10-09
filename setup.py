@@ -16,10 +16,10 @@ setup(
         ],
     },
     install_requires=[
-        'djpostman==0.4.12',
+        'djpostman==0.4.13',
     ],
     dependency_links = [ 
-        'http://github.com/iterativ/djpostman/tarball/master#egg=djpostman-0.4.12',
+        'http://github.com/iterativ/djpostman/tarball/master#egg=djpostman-0.4.13',
     ],
     zip_safe=False,
     classifiers=[
